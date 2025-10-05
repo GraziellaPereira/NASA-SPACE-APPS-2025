@@ -44,18 +44,19 @@ def root():
     return {"message": "Weather Prediction API"}
 
 def geocode_city(cidade, uf):
-    url = f"https://nominatim.openstreetmap.org/search"
-    params = {
-        "city": cidade,
-        "state": uf,
-        "country": "Brazil",
-        "format": "json"
-    }
+    uf = uf.upper()
+    url = "https://nominatim.openstreetmap.org/search"
+    params = {"city": cidade, "state": uf, "country": "Brazil", "format": "json"}
     resp = requests.get(url, params=params, headers={"User-Agent": "weather-app"})
     data = resp.json()
     if not data:
-        raise HTTPException(status_code=404, detail="Cidade/UF não encontrados.")
+        # fallback: tentar só com city
+        params.pop("state")
+        data = requests.get(url, params=params, headers={"User-Agent": "weather-app"}).json()
+    if not data:
+        raise HTTPException(status_code=404, detail=f"Cidade/UF '{cidade}-{uf}' não encontrados.")
     return float(data[0]["lat"]), float(data[0]["lon"])
+
 
 @app.get("/predict")
 def predict(
@@ -152,7 +153,8 @@ def get_plots(
 ):
     # latitude, longitude, mes serão informados via API
     lat, lon = geocode_city(cidade, uf)
-    tolerancia = 0.1
+    tolerancia = 0.3  # ou até 0.5
+
 
     data = load_and_preprocess_data()
 

@@ -1,6 +1,6 @@
 import { GoogleMap, Marker, Autocomplete } from '@react-google-maps/api';
 import { useRef, useState } from 'react';
-import './stylesMap.css'; // 👈 Importa o CSS novo
+import './stylesMap.css';
 
 const containerStyle = {
   width: '100%',
@@ -15,6 +15,9 @@ const initialCenter = {
 export function MyMap() {
   const [markerPosition, setMarkerPosition] = useState(initialCenter);
   const [map, setMap] = useState<google.maps.Map | null>(null);
+  const [year, setYear] = useState('');
+  const [month, setMonth] = useState('');
+
   const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
 
   const handleMapClick = (event: google.maps.MapMouseEvent) => {
@@ -23,9 +26,7 @@ export function MyMap() {
     const lng = event.latLng.lng();
 
     setMarkerPosition({ lat, lng });
-    console.log('🗺️ Clique no mapa:');
-    console.log('Latitude:', lat);
-    console.log('Longitude:', lng);
+    console.log('🗺️ Clique no mapa:', { lat, lng });
   };
 
   const handlePlaceChanged = () => {
@@ -39,21 +40,62 @@ export function MyMap() {
     map?.panTo({ lat, lng });
     map?.setZoom(13);
 
-    console.log('📍 Local pesquisado:');
-    console.log('Latitude:', lat);
-    console.log('Longitude:', lng);
+    console.log('📍 Local pesquisado:', { lat, lng });
+  };
+
+  const handleSearch = () => {
+    console.log('🔍 Filtros aplicados:');
+    console.log('Cidade:', autocompleteRef.current?.getPlace()?.formatted_address);
+    console.log('Ano:', year);
+    console.log('Mês:', month);
+
+    // Aqui você pode integrar uma função para buscar dados filtrados
   };
 
   return (
     <div style={{ position: 'relative' }}>
-      {/* Barra de busca + botões extras */}
+      {/* Controles de busca */}
       <div className="map-controls">
-        <Autocomplete
-          onLoad={(autocomplete) => (autocompleteRef.current = autocomplete)}
-          onPlaceChanged={handlePlaceChanged}
-        >
-          <input type="text" placeholder="Buscar local..." className="map-input" />
-        </Autocomplete>
+        <div className="filter-group">
+          <Autocomplete
+            onLoad={(autocomplete) => (autocompleteRef.current = autocomplete)}
+            onPlaceChanged={handlePlaceChanged}
+          >
+            <input type="text" placeholder="Buscar cidade..." className="map-input" />
+          </Autocomplete>
+
+          <input
+            type="number"
+            placeholder="Ano"
+            className="map-input small"
+            value={year}
+            onChange={(e) => setYear(e.target.value)}
+            min="1900"
+            max="2100"
+          />
+
+          <select
+            className="map-input small"
+            value={month}
+            onChange={(e) => setMonth(e.target.value)}
+          >
+            <option value="">Mês</option>
+            <option value="01">Janeiro</option>
+            <option value="02">Fevereiro</option>
+            <option value="03">Março</option>
+            <option value="04">Abril</option>
+            <option value="05">Maio</option>
+            <option value="06">Junho</option>
+            <option value="07">Julho</option>
+            <option value="08">Agosto</option>
+            <option value="09">Setembro</option>
+            <option value="10">Outubro</option>
+            <option value="11">Novembro</option>
+            <option value="12">Dezembro</option>
+          </select>
+
+          <button className="map-button" onClick={handleSearch}>Buscar</button>
+        </div>
       </div>
 
       {/* Mapa */}

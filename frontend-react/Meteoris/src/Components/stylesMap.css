@@ -1,0 +1,42 @@
+.map-controls {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: #252523;
+  border-radius: 8px;
+  padding: 0.5rem;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.map-input {
+  width: 300px;
+  height: 35px;
+  padding: 0 12px;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  background: #252523;
+  font-size: 1rem;
+  outline: none;
+}
+
+.map-button {
+  width: 300px;
+  height: 35px;
+  border-radius: 4px;
+  border: none;
+  background: #252523;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.map-button:hover {
+  background: #1c1c1a;
+}

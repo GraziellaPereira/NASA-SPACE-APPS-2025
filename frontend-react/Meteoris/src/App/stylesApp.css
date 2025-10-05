@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* color: aliceblue; */
+}
+
+
+.globalContainer{
+  background-color: black;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.mainContent {
+  flex: 1;
+  overflow-y: auto;
+  background-color: var(--color-black);
+}
+
+.contentWrapper {
+  padding: 2rem;
+}
+
+.headerContent {
+  margin-bottom: 2rem;
+}
+
+/* Adicionando cor ao texto */
+.headerContent h1, .headerContent p {
+  color: white; /* Escolha uma cor contrastante com o fundo */
+}
+
+/* Opcional: Garantir que o texto no resto da página seja visível */
+body {
+  color: white;
+}

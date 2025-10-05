@@ -1,0 +1,118 @@
+.globalSideBar {
+
+  font-family: Roboto;
+  width: 16rem;
+  background-color: #252523;
+  border-right: #252523;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.sidebarHeader {
+  padding: 1.5rem;
+  border-bottom: 1px solid #1c3166;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.75rem;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoIcon {
+  width: 2rem;
+  height: 2rem;
+  stroke: #1c3166;
+}
+
+.appInfo {
+  flex: 1;
+}
+
+.appName {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+}
+
+.appVersion {
+  font-size: 0.75rem;
+  color: #8f9bb8;
+}
+
+.informationMaps {
+    padding-top: 0.5rem;
+    padding-bottom: 0.20em;
+    padding-left: 1rem;
+    font-family: Roboto;
+    font-size: 0.5rem;
+    color: #8a8a8b;
+
+}
+
+
+.responseButton {
+    margin-bottom: 0.2rem; /* Espaço entre os inputs */
+    padding: 0.5rem; /* Espaçamento interno */
+    margin-top: 0.3rem;
+    border: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Roboto;
+
+    background-color: #1c3166;
+    color: aliceblue;
+
+    font-weight: 400;
+    font-size: 1.1rem;
+ 
+}
+.responseButton:hover {
+    background-color: #2a4a99;
+    transform: scale(1.03);
+}
+
+
+.link{
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+
+}
+
+.dashboardButton {
+  box-sizing: border-box;
+  width: 90%;           /* todos iguais */
+  max-width: 15rem;     /* trava o máximo */
+  display: inline-flex; /* centraliza o texto dentro */
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+  margin: 0.5rem auto;  /* centraliza horizontalmente */
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #1c3166;
+  color: #fff;
+  font: 500 1rem/1.2 Roboto, sans-serif;
+  cursor: pointer;
+  transition: background-color .15s ease, transform .15s ease;
+}
+
+.dashboardButton:hover {
+    background-color: #2a4a99;
+    transform: scale(1.03);
+}

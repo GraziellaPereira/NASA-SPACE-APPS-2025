@@ -9,7 +9,7 @@ import "./stylesApp.css";
 export function App() {
   return (
     <LoadScript
-      googleMapsApiKey="AIzaSyBcG6AwzDwxD628B5Ahqvd80CJw0xQXQO4"
+      googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY} // ✅ para Vite use 'import.meta.env'
       libraries={['places']} // 👈 necessário para o Autocomplete funcionar
     >
       <Router>

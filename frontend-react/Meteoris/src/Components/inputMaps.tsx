@@ -3,7 +3,7 @@ import './stylesInput.css'
 interface inputMapsProps {
     label: string;        // O título do campo
     value: string | number;  // O valor do input (pode ser texto ou número)
-    placeholder: string;  // Texto de sugestão no campo
+    placeholder?: string;  // Texto de sugestão no campo
     disabled: boolean;    // Se o campo deve ser desabilitado
 }
 

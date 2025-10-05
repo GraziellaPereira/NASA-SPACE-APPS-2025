@@ -1,0 +1,63 @@
+/* Container do input */
+.inputContainer {
+    margin-bottom: 0.2rem; /* Espaço entre os inputs */
+    padding: 0.5rem; /* Espaçamento interno */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: Roboto;
+}
+
+/* Título do input */
+.titleInputs {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: #979797;
+    margin-bottom: 0.1rem; /* Espaço entre título e o campo de entrada */
+    text-transform: capitalize;
+}
+
+/* Estilo do campo de input */
+.inputGeneric {
+    height: 50%;
+    width: 100%; /* Ocupa toda a largura disponível */
+    padding: 1rem;
+    font-size: 1rem;
+    border: 2px solid #ccc; /* Cor da borda */
+    border-radius: 8px; /* Borda arredondada */
+    background-color: #f9f9f9; /* Cor de fundo */
+    color: #333;
+    box-sizing: border-box; /* Garante que o padding não afete o tamanho total */
+    transition: border-color 0.3s ease; /* Transição suave para mudança de borda */
+}
+
+/* Foco do input */
+.inputGeneric:focus {
+    border-color: #007bff; /* Cor da borda quando o input estiver em foco */
+    outline: none; /* Remove a borda padrão de foco */
+    background-color: #fff; /* Fundo branco no foco */
+}
+
+/* Estilo quando o input está desabilitado */
+.inputGeneric:disabled {
+    background-color: #3d3a3a; /* Cor de fundo quando desabilitado */
+    border-color: #3d3a3a; /* Cor da borda quando desabilitado */
+    color: #888; /* Cor do texto quando desabilitado */
+}
+
+/* Estilo para o placeholder */
+.inputGeneric::placeholder {
+    color: #aaa; /* Cor do texto do placeholder */
+    font-style: italic; /* Estilo em itálico */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 600px) {
+    .inputContainer {
+        width: 100%;
+    }
+
+    .inputGeneric {
+        font-size: 0.9rem;
+    }
+}

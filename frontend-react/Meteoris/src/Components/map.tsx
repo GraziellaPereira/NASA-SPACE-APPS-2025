@@ -4,13 +4,14 @@ import './stylesMap.css';
 
 const containerStyle = {
   width: '100%',
-  height: '600px',
+  height: '100vh',
 };
 
 const initialCenter = {
   lat: -19.5903,
   lng: -46.9431,
 };
+
 
 export function MyMap() {
   const [markerPosition, setMarkerPosition] = useState(initialCenter);

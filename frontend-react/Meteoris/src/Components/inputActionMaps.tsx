@@ -19,3 +19,4 @@ export function InputActionMaps({ value, onChange, onClick, placeholder }: Input
         </div>
     );
 }
+

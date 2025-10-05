@@ -1,24 +1,31 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
 import { SideBar } from "../Components/sideBar";
-import { Dashboard } from "../Components/dashBoard"; // Importe a página Dashboard
-import "./stylesApp.css"; 
+import { Dashboard } from "../Components/dashBoard";
 import { MoreInformation } from '../Components/moreInformation';
+import { MyMap } from '../Components/map';
+import { LoadScript } from '@react-google-maps/api';
+import "./stylesApp.css"; 
 
 export function App() {
   return (
-    <Router>
-      <div className="globalContainer">
-        <SideBar />
-        <main className="mainContent">
-          <div className="contentWrapper">
-            <Routes>
-              <Route path="/" element={<h1>Bem-vindo ao Maps</h1>} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/moreInformation" element={<MoreInformation />} />
-            </Routes>
-          </div>
-        </main>
-      </div>
-    </Router>
+    <LoadScript
+      googleMapsApiKey="AIzaSyBcG6AwzDwxD628B5Ahqvd80CJw0xQXQO4"
+      libraries={['places']} // 👈 necessário para o Autocomplete funcionar
+    >
+      <Router>
+        <div className="globalContainer">
+          <SideBar />
+          <main className="mainContent">
+            <div className="contentWrapper">
+              <Routes>
+                <Route path="/" element={<MyMap />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/moreInformation" element={<MoreInformation />} />
+              </Routes>
+            </div>
+          </main>
+        </div>
+      </Router>
+    </LoadScript>
   );
 }

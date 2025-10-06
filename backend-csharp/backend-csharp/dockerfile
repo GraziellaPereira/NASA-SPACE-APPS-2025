@@ -1,0 +1,17 @@
+# Etapa 1: build (compilação)
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+WORKDIR /src
+COPY . .
+RUN dotnet restore "backend-csharp.csproj"
+RUN dotnet publish "backend-csharp.csproj" -c Release -o /app/out
+
+# Etapa 2: runtime (execução)
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
+WORKDIR /app
+COPY --from=build /app/out .
+
+# Define porta usada pelo Render (Render define $PORT automaticamente)
+ENV ASPNETCORE_URLS=http://+:$PORT
+EXPOSE 8080
+
+ENTRYPOINT ["dotnet", "backend-csharp.dll"]

@@ -5,18 +5,15 @@ if hasattr(pa, "unregister_extension_type"):
     except Exception:
         pass
 
-import os
-from dotenv import load_dotenv
-load_dotenv()  # Carrega o arquivo .env localmente
-
 from fastapi import FastAPI, Query, HTTPException
 from pydantic import BaseModel
 import requests
 import joblib
 import pandas as pd
 import numpy as np
+import os
 import matplotlib
-matplotlib.use("Agg")
+matplotlib.use("Agg")  # Para backend headless (sem interface gráfica)
 import matplotlib.pyplot as plt
 import seaborn as sns
 import matplotlib.dates as mdates
@@ -24,27 +21,6 @@ import base64
 from io import BytesIO
 from fastapi.middleware.cors import CORSMiddleware
 
-# --- Configurações com variáveis de ambiente ---
-MODEL_PATH = os.getenv("MODEL_PATH", "../ai-model/clima_model.joblib")
-SCALER_PATH = os.getenv("SCALER_PATH", "../ai-model/scaler.joblib")
-DATASET_PATH = os.getenv("DATASET_PATH", "../notebooks/DATASETS/clima_brasil_mensal/clima_brasil_2000_2025.parquet")
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "*").split(",")
-
-# --- Inicialização do app ---
-app = FastAPI()
-
-# --- Middleware CORS ---
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# --- Carrega modelo e scaler ---
-model = joblib.load(MODEL_PATH)
-scaler = joblib.load(SCALER_PATH)
 
 
 app = FastAPI()

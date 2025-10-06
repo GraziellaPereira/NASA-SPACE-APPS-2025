@@ -34,7 +34,7 @@ Place the downloaded file in the same directory.
 Open the Python API directory and start the server:
 ```bash
 cd api-python
-uvicorn main:app --reload
+uvicorn WeatherAPI:app --reload
 ```
 
 This will start the machine learning API that handles climate predictions and data visualizations.
